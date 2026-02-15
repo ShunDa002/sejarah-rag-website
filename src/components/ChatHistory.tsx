@@ -6,14 +6,20 @@ import { useChat } from "@/context/ChatContext";
 import { ContextMenu } from "./ContextMenu";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import Loading from "@/app/loading";
 
 interface ChatHistoryProps {
   onSessionClick?: () => void;
 }
 
 export function ChatHistory({ onSessionClick }: ChatHistoryProps) {
-  const { groupedSessions, activeSessionId, setActiveSession, deleteSession } =
-    useChat();
+  const {
+    groupedSessions,
+    activeSessionId,
+    setActiveSession,
+    deleteSession,
+    isSessionsLoading,
+  } = useChat();
   const [contextMenu, setContextMenu] = useState<{
     sessionId: string;
     x: number;
@@ -45,6 +51,10 @@ export function ChatHistory({ onSessionClick }: ChatHistoryProps) {
     },
     [deleteSession],
   );
+
+  if (isSessionsLoading) {
+    return <Loading />;
+  }
 
   if (groupedSessions.length === 0) {
     return (

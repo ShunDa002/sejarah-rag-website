@@ -79,23 +79,6 @@ function ShelfRow({ books }: { books: typeof TEXTBOOKS }) {
                   {/* Gloss overlay */}
                   <div className="pointer-events-none absolute inset-0 rounded-r-md bg-gradient-to-tr from-white/10 via-transparent to-black/20" />
                 </div>
-
-                {/* Book Spine (Left Side) - adjusted to 40px thickness */}
-                <div className="absolute left-0 top-0 h-full w-[16px] origin-left -translate-x-[16px] border-r border-white/10 bg-[#5d4037] brightness-90 [transform:rotateY(-90deg)] sm:w-[40px] sm:-translate-x-[40px]">
-                  <div className="flex h-full w-full items-center justify-center overflow-hidden p-1 sm:p-2">
-                    <span className="block rotate-90 whitespace-nowrap text-[0.5rem] font-bold tracking-widest text-[#eecfa1] opacity-80 sm:text-xs">
-                      {book.title}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Pages (Top) - adjusted to 40px thickness */}
-                <div className="absolute left-0 top-0 h-[16px] w-[90px] origin-top -translate-y-[16px] bg-[#fffbf0] shadow-inner [transform:rotateX(90deg)] sm:h-[40px] sm:w-[200px] sm:-translate-y-[40px]" />
-
-                {/* Pages (Right - Thickness) - visible when rotated - adjusted to 40px thickness */}
-                <div className="absolute right-0 top-0 h-full w-[16px] origin-right translate-x-[16px] bg-[#fffbf0] shadow-[inset_2px_0_5px_rgba(0,0,0,0.1)] [transform:rotateY(90deg)] sm:w-[40px] sm:translate-x-[40px]">
-                  <div className="h-full w-full bg-[repeating-linear-gradient(90deg,transparent,transparent_1px,rgba(0,0,0,0.05)_2px)]" />
-                </div>
               </div>
             </Link>
 

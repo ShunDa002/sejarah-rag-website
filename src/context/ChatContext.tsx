@@ -43,6 +43,7 @@ interface ChatContextType {
   activeSessionId: string | null;
   activeSession: ChatSession | null;
   isLoading: boolean;
+  isSessionsLoading: boolean;
   input: string;
   handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
@@ -106,6 +107,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSessionsLoading, setIsSessionsLoading] = useState(true);
   const { data: sessionData } = useSession();
   const userId = sessionData?.user?.id;
 
@@ -148,8 +150,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   // Fetch sessions on mount/auth
   useEffect(() => {
     async function loadSessions() {
-      if (!userId) return;
+      if (!userId) {
+        setIsSessionsLoading(false);
+        return;
+      }
 
+      setIsSessionsLoading(true);
       try {
         const fetchedSessions = await getChatSessions();
         const mappedSessions: ChatSession[] = fetchedSessions.map((s: any) => ({
@@ -178,6 +184,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         setActiveSessionId(newSession.id);
       } catch (error) {
         console.error("Failed to load chat history:", error);
+      } finally {
+        setIsSessionsLoading(false);
       }
     }
 
@@ -341,6 +349,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         activeSessionId,
         activeSession,
         isLoading,
+        isSessionsLoading,
         input,
         handleInputChange,
         createNewChat,
