@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  /* ============================================================
+     EXISTING VARIABLES (Preserved)
+     ============================================================ */
+  /* Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f4f4f5;
+  --color-bg-tertiary: #e4e4e7;
+  --color-bg-chat: #fafafa;
+  --color-bg-sidebar: #f8f9fa;
+  --color-bg-input: #ffffff;
+  --color-bg-user-bubble: #e4e4e7;
+  --color-bg-hover: rgba(0, 0, 0, 0.04);
+  --color-bg-active: rgba(0, 0, 0, 0.06);
+  --color-bg-code: #f4f4f5;
+  --color-bg-overlay: rgba(0, 0, 0, 0.4);
+  --color-bg-context-menu: #ffffff;
+  --color-bg-blockquote: #f0f4ff;
+
+  /* Text */
+  --color-text-primary: #18181b;
+  --color-text-secondary: #52525b;
+  --color-text-tertiary: #a1a1aa;
+  --color-text-inverse: #ffffff;
+  --color-text-code: #18181b;
+  --color-text-link: #2563eb;
+
+  /* Borders */
+  --color-border: #e4e4e7;
+  --color-border-light: #f4f4f5;
+  --color-border-input: #d4d4d8;
+  --color-border-focus: #18181b;
+  --color-border-blockquote: #3b82f6;
+
+  /* Accent */
+  --color-accent: #18181b;
+  --color-accent-light: #f4f4f5;
+  --color-accent-hover: #27272a;
+  --color-accent-sparkle: #6366f1;
+
+  /* Danger */
+  --color-danger: #ef4444;
+  --color-danger-bg: #fef2f2;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-input: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-context: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Sidebar */
+  --sidebar-expanded: 280px;
+  --sidebar-collapsed: 68px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Typography */
+  --font-heading: var(--font-inter), system-ui, sans-serif;
+  --font-body: var(--font-roboto), system-ui, sans-serif;
+  --font-mono: var(--font-roboto-mono), "Courier New", monospace;
+
+  /* ============================================================
+     SHADCN UI MAPPINGS
+     ============================================================ */
+  --background: var(--color-bg-primary);
+  --foreground: var(--color-text-primary);
+
+  --card: var(--color-bg-primary);
+  --card-foreground: var(--color-text-primary);
+
+  --popover: var(--color-bg-context-menu);
+  --popover-foreground: var(--color-text-primary);
+
+  --primary: var(--color-accent-sparkle);
+  --primary-foreground: var(--color-text-inverse);
+
+  --secondary: var(--color-bg-secondary);
+  --secondary-foreground: var(--color-text-secondary);
+
+  --muted: var(--color-bg-tertiary);
+  --muted-foreground: var(--color-text-tertiary);
+
+  --accent: var(--color-bg-hover);
+  --accent-foreground: var(--color-text-primary);
+
+  --destructive: var(--color-danger);
+  --destructive-foreground: var(--color-text-inverse);
+
+  --border: var(--color-border);
+  --input: var(--color-border-input);
+  --ring: var(--color-accent-sparkle);
+
+  --radius: var(--radius-md);
+}
+
+[data-theme="dark"] {
+  /* Existing Dark Theme Variables */
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b;
+  --color-bg-tertiary: #27272a;
+  --color-bg-chat: #09090b;
+  --color-bg-sidebar: #0f0f12;
+  --color-bg-input: #18181b;
+  --color-bg-user-bubble: #27272a;
+  --color-bg-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-active: rgba(255, 255, 255, 0.08);
+  --color-bg-code: #1e1e22;
+  --color-bg-overlay: rgba(0, 0, 0, 0.6);
+  --color-bg-context-menu: #1c1c1f;
+  --color-bg-blockquote: #1a1a2e;
+
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-tertiary: #71717a;
+  --color-text-inverse: #18181b;
+  --color-text-code: #e4e4e7;
+  --color-text-link: #60a5fa;
+
+  --color-border: #27272a;
+  --color-border-light: #1e1e22;
+  --color-border-input: #3f3f46;
+  --color-border-focus: #a1a1aa;
+  --color-border-blockquote: #6366f1;
+
+  --color-accent: #fafafa;
+  --color-accent-light: #27272a;
+  --color-accent-hover: #e4e4e7;
+  --color-accent-sparkle: #818cf8;
+
+  --color-danger: #f87171;
+  --color-danger-bg: #1c1117;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --shadow-input: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-context: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+  /* SHADCN UI MAPPINGS UPDATE FOR DARK MODE */
+  --background: var(--color-bg-primary);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-bg-primary);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-bg-context-menu);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--color-accent-sparkle);
+  --primary-foreground: var(--color-text-inverse);
+  --secondary: var(--color-bg-secondary);
+  --secondary-foreground: var(--color-text-secondary);
+  --muted: var(--color-bg-tertiary);
+  --muted-foreground: var(--color-text-tertiary);
+  --accent: var(--color-bg-hover);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-danger);
+  --destructive-foreground: var(--color-text-inverse);
+  --border: var(--color-border);
+  --input: var(--color-border-input);
+  --ring: var(--color-accent-sparkle);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Base styles needed for Shadcn */
+* {
+  @apply border-border outline-ring/50;
+}
+body {
+  @apply bg-background text-foreground;
+}
+
+/* 
+   Preserve existing custom styles below if needed, 
+   but most should be covered by the variables and Tailwind.
+   Markdown styles should probably be kept as they are specific.
+*/
+
+/* ---------- Scrollbar Styling ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-tertiary);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-secondary);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-tertiary) transparent;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background-color: var(--color-accent-sparkle);
+  color: #ffffff;
+}
+
+/* ---------- Code Block Theming ---------- */
+pre {
+  margin: var(--space-md) 0;
+  padding: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border);
+}
+pre code {
+  display: block;
+  padding: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--color-text-code);
+  overflow-x: auto;
+}
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-bg-code);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-code);
+}
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* ---------- Markdown Content Styles ---------- */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+.markdown-body h1 { font-size: 1.5rem; }
+.markdown-body h2 { font-size: 1.25rem; }
+.markdown-body h3 { font-size: 1.1rem; }
+.markdown-body h4 { font-size: 1rem; }
+.markdown-body p { margin-bottom: 0.75em; line-height: 1.7; }
+.markdown-body ul, .markdown-body ol { margin-bottom: 0.75em; padding-left: 1.5em; }
+.markdown-body li { margin-bottom: 0.25em; line-height: 1.7; }
+.markdown-body li > ul, .markdown-body li > ol { margin-bottom: 0; }
+.markdown-body strong { font-weight: 600; color: var(--color-text-primary); }
+.markdown-body blockquote {
+  margin: var(--space-md) 0;
+  padding: var(--space-sm) var(--space-md);
+  border-left: 3px solid var(--color-border-blockquote);
+  background: var(--color-bg-blockquote);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--color-text-secondary);
+}
+.markdown-body blockquote p { margin-bottom: 0; }
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-size: 0.9rem;
+}
+.markdown-body thead th {
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--color-border);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.markdown-body tbody td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-secondary);
+}
+.markdown-body tbody tr:hover { background: var(--color-bg-hover); }
+.markdown-body hr {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-lg) 0;
+}
+.markdown-body img { max-width: 100%; border-radius: var(--radius-md); }
+
+/* ---------- Highlight.js Theme Overrides (Preserved) ---------- */
+.hljs { background: transparent !important; color: var(--color-text-code) !important; }
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-name, .hljs-tag { color: #7c3aed; }
+[data-theme="dark"] .hljs-keyword, [data-theme="dark"] .hljs-selector-tag, [data-theme="dark"] .hljs-built_in, [data-theme="dark"] .hljs-name, [data-theme="dark"] .hljs-tag { color: #a78bfa; }
+.hljs-string, .hljs-title, .hljs-section, .hljs-attribute { color: #059669; }
+[data-theme="dark"] .hljs-string, [data-theme="dark"] .hljs-title, [data-theme="dark"] .hljs-section, [data-theme="dark"] .hljs-attribute { color: #34d399; }
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable { color: #d97706; }
+[data-theme="dark"] .hljs-number, [data-theme="dark"] .hljs-literal, [data-theme="dark"] .hljs-variable, [data-theme="dark"] .hljs-template-variable { color: #fbbf24; }
+.hljs-comment, .hljs-quote { color: #9ca3af; font-style: italic; }
+.hljs-type, .hljs-class .hljs-title { color: #2563eb; }
+[data-theme="dark"] .hljs-type, [data-theme="dark"] .hljs-class .hljs-title { color: #60a5fa; }

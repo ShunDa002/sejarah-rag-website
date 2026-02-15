@@ -1,0 +1,16 @@
+export type MessageRole = 'user' | 'assistant' | 'system';
+
+export interface ChatSession {
+  id: string;
+  userId: string;
+  title: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Message {
+  id: string;
+  role: MessageRole;
+  content: string;
+  createdAt: Date;
+}
