@@ -32,8 +32,7 @@ export function ChatArea() {
                 Explore History
               </h2>
               <p className="text-muted-foreground">
-                Ask me anything about Malaysian history — from ancient kingdoms
-                to modern nationhood.
+                Ask me anything about Malaysian history.
               </p>
             </div>
           </div>

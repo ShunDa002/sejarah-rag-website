@@ -51,7 +51,7 @@ export function ChatInput() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Ask about Malaysian history..."
+          placeholder="Jelaskan pelaksanaan hukuman jenayah dalam Hukum Kanun Melaka..."
           rows={1}
           disabled={isLoading}
         />
@@ -59,7 +59,7 @@ export function ChatInput() {
           size="icon"
           className={cn(
             "mb-2 mr-2 shrink-0 transition-opacity",
-            canSend ? "opacity-100" : "opacity-50 cursor-not-allowed"
+            canSend ? "opacity-100" : "opacity-50 cursor-not-allowed",
           )}
           onClick={handleSubmit}
           disabled={!canSend}
@@ -69,7 +69,7 @@ export function ChatInput() {
         </Button>
       </div>
       <p className="mt-2 text-center text-xs text-muted-foreground">
-        AI responses may be inaccurate. Verify important information.
+        AI responses may be wrong. Verify important information.
       </p>
     </div>
   );
