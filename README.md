@@ -23,6 +23,8 @@ Sejarah RAG is a full-stack educational web application designed to help student
 
 In addition to its AI chatbot capabilities, the platform provides a virtual bookshelf for browsing and reading history textbooks directly within the app, comprehensive session history management, and secure user authentication. The architecture combines a robust Next.js frontend with a fast, specialized FastAPI backend dedicated exclusively to vector operations and LLM generation. The AI intelligence is powered by state-of-the-art open-weight models: high-dimensional vector embeddings are generated using [`Alibaba-NLP/gte-Qwen2-1.5B-instruct`](https://huggingface.co/Alibaba-NLP/gte-Qwen2-1.5B-instruct) (1536d) from HuggingFace, while deep contextual reasoning and conversational outputs are handled by fast foundational LLMs such as `meta-llama/llama-4-scout-17b-16e-instruct` (via Groq) or `xiaomi/mimo-v2-flash:free` (via OpenRouter).
 
+![Sejarah RAG](public/website-demo.png)
+
 ## Key Features
 
 - **AI-Powered Virtual Tutor**: An intelligent chat interface that answers questions about Malaysian History, equipped with a simulated real-time typewriter effect.
