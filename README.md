@@ -56,65 +56,9 @@ In addition to its AI chatbot capabilities, the platform provides a virtual book
 
 ## Getting Started
 
-### Prerequisites
+### Demonstration
 
-- Node.js (v22+)
-- Python (v3.12+) and [`uv`](https://github.com/astral-sh/uv)
-- A Supabase PostgreSQL database
-- API Keys for your preferred LLMs (e.g., OpenAI, Groq)
-
-### Backend Setup (FastAPI)
-
-1. Navigate to the backend directory:
-   ```bash
-   cd fastapi
-   ```
-2. Set up the Python environment using `uv` and install dependencies:
-   ```bash
-   uv sync
-   ```
-3. Create a `.env` file in the `fastapi` directory and configure the database and LLM API keys:
-   ```env
-   # Add your specific database and LLM API keys here
-   SUPABASE_URL="your-supabase-url"
-   SUPABASE_SERVICE_KEY="your-supabase-key"
-   OPENAI_API_KEY="your-openai-key"
-   GROQ_API_KEY="your-groq-key"
-   ```
-4. Start the FastAPI development server:
-   ```bash
-   uv run main.py
-   ```
-   The backend will start at `http://127.0.0.1:7860`.
-
-### Frontend Setup (Next.js)
-
-1. Navigate to the frontend directory:
-   ```bash
-   cd website
-   ```
-2. Install Node dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file in the `website` directory with the following variables:
-   ```env
-   DATABASE_URL="your-pooled-postgresql-url"
-   DIRECT_URL="your-direct-postgresql-url"
-   AUTH_SECRET="your-nextauth-secret"
-   AUTH_GOOGLE_ID="your-google-oauth-client-id"
-   AUTH_GOOGLE_SECRET="your-google-oauth-client-secret"
-   ```
-4. Generate Prisma client artifacts and sync database schemas:
-   ```bash
-   npx prisma generate
-   npx prisma db push # To push schema changes to DB
-   ```
-5. Start the frontend development server:
-   ```bash
-   npm run dev
-   ```
-   The application will be accessible at `http://localhost:3000`.
+Checkout: https://sejarah-rag-website.vercel.app
 
 ## License
 
