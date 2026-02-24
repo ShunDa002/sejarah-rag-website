@@ -58,7 +58,9 @@ In addition to its AI chatbot capabilities, the platform provides a virtual book
 
 ### Demonstration
 
-Checkout: https://sejarah-rag-website.vercel.app
+Checkout website: https://sejarah-rag-website.vercel.app
+
+FastAPI backend: https://huggingface.co/spaces/shunda012/sejarah-rag-fastapi/tree/main
 
 ## License
 
