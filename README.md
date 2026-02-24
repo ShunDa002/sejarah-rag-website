@@ -12,7 +12,7 @@ tags:
     Educational,
     AI Chatbot,
   ]
-description: A full-stack educational web app for learning Malaysian History (Sejarah) using an AI-powered RAG chatbot with textbook citations, Next.js frontend, and FastAPI backend.
+description: A full-stack educational web app for learning Malaysian SPM History (Sejarah) using an AI-powered RAG chatbot with textbook citations, Next.js frontend, and FastAPI backend.
 -->
 
 # Sejarah RAG

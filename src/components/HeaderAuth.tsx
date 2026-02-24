@@ -154,7 +154,7 @@ export function HeaderAuth() {
           <DialogDescription>
             {authView === "login"
               ? "Enter your credentials to access your chat history."
-              : "Enter your details to create a new account."}
+              : "Log in to start saving your chats."}
           </DialogDescription>
         </DialogHeader>
 

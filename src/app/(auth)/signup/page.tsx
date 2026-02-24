@@ -2,7 +2,13 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { SignUpForm } from "@/components/auth/AuthForms";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -18,9 +24,11 @@ export default function SignupPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <SignUpForm 
+        <SignUpForm
           onSuccess={() => router.push(callbackUrl)}
-          switchToLogin={() => router.push(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`)}
+          switchToLogin={() =>
+            router.push(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`)
+          }
         />
       </CardContent>
     </Card>
