@@ -16,12 +16,12 @@ import {
 } from "@/lib/actions/chat.actions";
 import { useSession } from "next-auth/react";
 
-/* ---------- Types ---------- */
 export interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
   citations?: string[]; // Updated to match the backend (list of strings)
+  imageUrl?: string;
   timestamp: number;
 }
 
@@ -52,7 +52,7 @@ interface ChatContextType {
   deleteSession: (id: string) => void;
   renameSession: (id: string, title: string) => void;
   setActiveSession: (id: string) => void;
-  sendMessage: (content: string) => void;
+  sendMessage: (payload: string | FormData) => void;
   groupedSessions: DateGroup[];
 }
 
@@ -243,8 +243,16 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const sendMessage = useCallback(
-    async (content: string) => {
-      if (!content.trim()) return;
+    async (payload: string | FormData) => {
+      const content =
+        typeof payload === "string"
+          ? payload
+          : (payload.get("query") as string) || "";
+      if (
+        !content.trim() &&
+        !(payload instanceof FormData && payload.get("image"))
+      )
+        return;
 
       let currentSessionId = activeSessionId;
       let sessionTitle = "New Chat";
@@ -274,10 +282,19 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         }
       }
 
+      let imageUrl: string | undefined = undefined;
+      if (payload instanceof FormData) {
+        const imageFile = payload.get("image") as File;
+        if (imageFile) {
+          imageUrl = URL.createObjectURL(imageFile);
+        }
+      }
+
       const userMessage: Message = {
         id: generateId(),
         role: "user",
         content,
+        imageUrl,
         timestamp: Date.now(),
       };
 
@@ -300,7 +317,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         // Ensure session exists in DB for persistence
         await createOrUpdateChatSession(currentSessionId, sessionTitle);
 
-        const response = await sendChatMessage(currentSessionId, content);
+        const response = await sendChatMessage(currentSessionId, payload);
 
         const assistantMessage: Message = {
           id: generateId(),

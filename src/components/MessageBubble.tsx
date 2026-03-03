@@ -8,6 +8,13 @@ import rehypeHighlight from "rehype-highlight";
 import { type Message } from "@/context/ChatContext";
 import { CodeBlock } from "./CodeBlock";
 import { Button } from "./ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
 import { cn } from "@/lib/utils";
 
 interface MessageBubbleProps {
@@ -110,8 +117,34 @@ export function MessageBubble({
   if (message.role === "user") {
     return (
       <div className="flex w-full justify-end py-4">
-        <div className="bg-primary text-primary-foreground max-w-[85%] rounded-2xl rounded-tr-sm px-5 py-2.5 shadow-sm">
-          <p className="whitespace-pre-wrap leading-7">{message.content}</p>
+        <div className="bg-primary text-primary-foreground max-w-[85%] rounded-2xl rounded-tr-xs px-5 py-2.5 shadow-sm">
+          {message.imageUrl && (
+            <div className="mb-1">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <img
+                    src={message.imageUrl}
+                    alt="Uploaded image"
+                    className="max-h-60 w-auto rounded-md cursor-zoom-in object-cover"
+                  />
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl w-auto p-1 bg-transparent border-none shadow-none [&>button]:text-white">
+                  <DialogTitle className="sr-only">Image View</DialogTitle>
+                  <DialogDescription className="sr-only">
+                    Full size view of the uploaded image
+                  </DialogDescription>
+                  <img
+                    src={message.imageUrl}
+                    alt="Uploaded image full size"
+                    className="w-full h-auto rounded-lg object-contain max-h-[85vh]"
+                  />
+                </DialogContent>
+              </Dialog>
+            </div>
+          )}
+          {message.content && (
+            <p className="whitespace-pre-wrap leading-7">{message.content}</p>
+          )}
         </div>
       </div>
     );

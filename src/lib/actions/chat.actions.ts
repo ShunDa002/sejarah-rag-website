@@ -64,8 +64,12 @@ export async function createOrUpdateChatSession(
  */
 export async function sendChatMessage(
   sessionId: string,
-  content: string,
+  payload: string | FormData,
 ): Promise<AnswerResponse> {
+  const content =
+    typeof payload === "string"
+      ? payload
+      : (payload.get("query") as string) || "";
   // 1. Authentication & Session Verification
   const session = await auth();
   const userId = session?.user?.id;
@@ -103,14 +107,26 @@ export async function sendChatMessage(
 
   // 3. Request to Backend (FastAPI)
   try {
-    const requestBody: AnswerRequest = { query: content, top_k: 6 };
-    const res = await fetch(`${API_BASE_URL}/answer`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
+    let res;
+    if (typeof payload === "string") {
+      const requestBody: AnswerRequest = { query: content, top_k: 6 };
+      res = await fetch(`${API_BASE_URL}/answer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+    } else {
+      // payload is FormData
+      if (!payload.has("top_k")) {
+        payload.append("top_k", "6");
+      }
+      res = await fetch(`${API_BASE_URL}/answer`, {
+        method: "POST",
+        body: payload,
+      });
+    }
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));
