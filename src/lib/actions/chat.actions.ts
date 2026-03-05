@@ -185,6 +185,9 @@ export async function seedDocument(formData: FormData): Promise<SeedResponse> {
   try {
     const res = await fetch(`${API_BASE_URL}/seed`, {
       method: "POST",
+      headers: {
+        "X-API-Secret": env.RAG_API_SECRET,
+      },
       body: formData,
     });
     if (!res.ok) {
